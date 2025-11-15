@@ -14,7 +14,7 @@ Teapot is a small Flask web app that uses a LangGraph workflow (built with `lang
 
 ## About
 
-The app builds a volunteer "graph" using `langgraph` and `langgraph-openai`, then uses `requests` and `beautifulsoup4` to gather and parse online volunteer listings. A Flask application (`app.py`) exposes an endpoint that runs the graph and returns a concise, human-readable summary of relevant opportunities for a given location and set of interests.
+The app builds a volunteer "graph" using `langgraph` and `langgraph-openai`, then ranks from a curated dataset that lives under `oportunities/` (generated via `process_oportunities.py`). A Flask application (`app.py`) exposes an endpoint that runs the graph and returns a concise, human-readable summary of relevant opportunities for a given location and set of interests.
 
 ## Features
 
@@ -34,7 +34,7 @@ This project uses:
 - `langgraph` and `langgraph-openai` for the volunteer recommendation workflow
 - `langchain-core` for core prompt/LLM abstractions used inside the graph
 - `flask` for the HTTP API and simple HTML UI
-- `requests` and `beautifulsoup4` for fetching and scraping volunteer opportunity data
+- Lightweight JSON datasets stored under `oportunities/` and indexed in `index/`
 
 ### Prerequisites
 
@@ -57,7 +57,7 @@ Install dependencies:
 
 ```bash
 pip install --upgrade pip
-pip install flask langgraph langgraph-openai langchain-core requests beautifulsoup4
+pip install flask langgraph langgraph-openai langchain-core
 ```
 
 Set your OpenAI-compatible API key (example for macOS / Linux):
@@ -185,7 +185,7 @@ Environment variables:
 
 - `OPENAI_API_KEY` (required): API key used by `langgraph-openai`.
 
-Other configuration, such as which sources to scrape, lives inside the LangGraph builder in `find_opportunity_graph.py`.
+Other configuration, such as prompt tweaks or ranking weights, lives inside the LangGraph builder in `find_opportunity_graph.py`.
 
 ## Development
 
