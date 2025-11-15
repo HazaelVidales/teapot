@@ -192,7 +192,7 @@ Other configuration, such as prompt tweaks or ranking weights, lives inside the 
 - `app.py` contains the Flask application (`/volunteer`, `/find-opportunity`, `/processed-opportunities`, etc.).
 - `find_opportunity_graph.py` defines `build_volunteer_graph()`, which constructs the LangGraph app.
 - `process_oportunities.py` converts `oportunities_raw/*.txt` into structured JSON under `oportunities/` and creates the skill/interest index files under `index/`.
-- `templates/find-opportunity.html`, `templates/processed.html`, and `templates/add_opportunity.html` power the browser experiences.
+- `templates/find-opportunity.html`, `templates/processed.html`, and `templates/add-opportunity.html` power the browser experiences.
 - `test.py` contains basic tests / experiments around the graph or API.
 
 To run the dev server:

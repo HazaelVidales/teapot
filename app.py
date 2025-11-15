@@ -251,7 +251,7 @@ def add_opportunity():
                 errors.append(f"Failed to process opportunity: {exc}")
 
     return render_template(
-        "add_opportunity.html",
+        "add-opportunity.html",
         title=form_title,
         description=form_description,
         errors=errors,
