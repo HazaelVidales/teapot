@@ -1,0 +1,25 @@
+{
+  "title": "Disaster Preparedness Kit Build Day Volunteer",
+  "description": "Assist with quarterly kit-build days to assemble 1,000 home preparedness buckets for rural fire districts. Volunteers work in assembly lines to portion supplies, label instruction cards, and palletize finished kits for shipment. Shifts are 3 hours, indoors, with clear roles, a safety briefing by emergency managers, and light lifting.",
+  "skills": [
+    "teamwork",
+    "packing and sorting",
+    "warehouse organization",
+    "inventory management",
+    "event support",
+    "emergency preparedness",
+    "disaster relief"
+  ],
+  "interests": [
+    "emergency response",
+    "disaster relief",
+    "neighborhood preparedness",
+    "community advisory boards",
+    "community festivals",
+    "event logistics"
+  ],
+  "source_file": "disaster_kit_build_day",
+  "model": "gpt-5.1",
+  "source_excerpt": "Regional Voluntary Organizations Active in Disaster hosts quarterly kit-build days to assemble 1,000 home preparedness buckets. Volunteers form assembly lines to portion supplies, label instruction cards, and palletize finished kits for shipment to rural fire districts.\n\nShifts are 3 hours, indoors, and well organized\u2014expect upbeat music, clear roles, and a safety huddle led by emergency managers. Light lifting required; steel-toe boots provided if you don't have your own.",
+  "thumbprint": "90baac2a1ef240d7059fb92c5b7603d608cb8edd9c75fa6225e1aba4d19f73d2"
+}

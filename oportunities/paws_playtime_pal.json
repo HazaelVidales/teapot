@@ -1,0 +1,19 @@
+{
+  "title": "Playtime Pal Animal Socialization Volunteer",
+  "description": "Volunteers socialize shy cats and medium-energy dogs awaiting adoption by rotating through kennel rounds, offering enrichment like puzzle feeders, brushing, and short leashed walks in the courtyard. A weekly two-hour shift is required, with training on reading animal stress signals and logging progress notes and support from on-site behavior staff.",
+  "skills": [
+    "animal care",
+    "pet socialization",
+    "shelter support",
+    "communication",
+    "listening skills"
+  ],
+  "interests": [
+    "animal shelter support",
+    "animal rescue"
+  ],
+  "source_file": "paws_playtime_pal",
+  "model": "gpt-5.1",
+  "source_excerpt": "PAWS North needs Playtime Pals to socialize shy cats and medium-energy dogs awaiting adoption. Volunteers rotate through kennel rounds, offering puzzle feeders, brushing, and short leashed walks in the courtyard.\n\nWe ask for one two-hour shift per week, with on-site behavior staff to support you. Comfortable closed-toe shoes required; training covers reading animal stress signals and logging progress notes.",
+  "thumbprint": "837ef39785829c04b8fb15d4aee9ea7aa75735172467cdb37fb7537246f5fba1"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+  "description": "Volunteer mentors support a small cohort of 6th-8th grade girls in a Saturday STEM lab focused on robotics, circuitry, and creative problem solving. Volunteers guide hands-on activities, help students reflect on their projects, and encourage their progress using provided lesson plans and kits. A background check is required and volunteers are asked to commit to at least four Saturdays from 10am-1pm.",
+  "skills": [
+    "mentoring",
+    "youth sports coaching",
+    "teaching",
+    "communication",
+    "teamwork"
+  ],
+  "interests": [
+    "STEM mentoring",
+    "youth mentoring",
+    "youth education",
+    "after-school tutoring",
+    "community science projects",
+    "youth leadership programs"
+  ],
+  "source_file": "girls_stem_lab",
+  "model": "gpt-5.1",
+  "source_excerpt": "Northside Community Center is launching a Saturday STEM lab for 6th-8th grade girls focused on robotics, circuitry, and creative problem solving. Mentors guide a cohort of eight students through hands-on builds, help them reflect on what worked, and celebrate small wins.\n\nWe provide lesson plans, kits, and staff support; you bring patience, curiosity, and confidence working with tweens. Background check required. Ideal volunteers can commit to at least four Saturdays from 10am-1pm.",
+  "thumbprint": "0ceafc1cd4dab7a36b7d038c595f524caf34ba36247c449630490cf4cc6fff60"
+}

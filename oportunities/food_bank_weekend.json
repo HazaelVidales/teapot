@@ -1,0 +1,26 @@
+{
+  "title": "Weekend Food Bank Volunteer",
+  "description": "Assist at Capitol Hill Food Bank on Saturday mornings by greeting and checking in neighbors and assembling pantry boxes with fresh produce and staples.",
+  "skills": [
+    "communication",
+    "customer service",
+    "teamwork",
+    "food sorting",
+    "meal distribution",
+    "packing and sorting",
+    "bilingual support",
+    "volunteer coordination"
+  ],
+  "interests": [
+    "food bank support",
+    "meal service",
+    "resource distribution",
+    "community kitchens",
+    "community gardens",
+    "volunteer coordination"
+  ],
+  "source_file": "food_bank_weekend",
+  "model": "gpt-5.1",
+  "source_excerpt": "Capitol Hill Food Bank needs weekend volunteers to greet neighbors, check them in, and assemble pantry boxes with fresh produce and staples. Shifts are Saturdays 9am-noon and include a brief orientation with our volunteer coordinator.\n\nIdeal volunteers are upbeat, can lift 25 pounds, and enjoy friendly conversation while keeping the line running smoothly. Spanish or Vietnamese language skills are a bonus but not required.",
+  "thumbprint": "a3ad5aaa872893649bd78147ed446167d4d02f95565771f24020a7c43db79d39"
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Senior Tablet Coach",
+  "description": "Provide one-on-one tablet help for older adults at the Redmond Senior Center\u2019s weekly drop-in tech bar, supporting telehealth access, messaging apps, and photo sharing through patient, jargon-free coaching.",
+  "skills": [
+    "communication",
+    "listening skills",
+    "digital literacy coaching",
+    "administrative support",
+    "document organization",
+    "mentoring",
+    "teaching"
+  ],
+  "interests": [
+    "senior companionship",
+    "adult education",
+    "digital literacy programs",
+    "tech mentorship"
+  ],
+  "source_file": "senior_tablet_coach",
+  "model": "gpt-5.1",
+  "source_excerpt": "Redmond Senior Center hosts a drop-in tablet help bar every Tuesday afternoon for older adults navigating telehealth, messaging apps, and photo sharing. Volunteers sit one-on-one for 30-minute sessions, listening carefully and coaching at the learner's pace.\n\nIf you can explain tech without jargon, stay calm under repetitive questions, and document simple how-to cards, this role is for you. Training provided; masks required indoors.",
+  "thumbprint": "ba07cd35c717df53014ce8f3d63a07e0eadaacc5c0a84c38bdeba4984de18dcb"
+}

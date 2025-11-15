@@ -1,0 +1,19 @@
+{
+  "title": "Youth Soccer Referee",
+  "description": "Volunteer referees help manage youth soccer games for ages 8-12, overseeing the flow of play, encouraging sportsmanship, and communicating with coaches about substitutions and safety. Training and rulebooks are provided, and volunteers travel to city fields on Saturday mornings.",
+  "skills": [
+    "communication",
+    "teamwork",
+    "youth sports coaching",
+    "refereeing"
+  ],
+  "interests": [
+    "camp programs",
+    "sports coaching",
+    "youth leadership programs"
+  ],
+  "source_file": "youth_soccer_referee",
+  "model": "gpt-5.1",
+  "source_excerpt": "Seattle Youth Sports trains volunteer referees for our fall soccer league serving ages 8-12. Refs manage the flow of play, encourage good sportsmanship, and communicate with coaches about substitutions and safety.\n\nTraining clinic and rulebook provided; you just need reliable transportation to city fields on Saturday mornings. Modest mileage stipend available. Great for former players or parents who love the game.",
+  "thumbprint": "eafae7e3ab7abc809dfdcd8c9d1629803194be3da2022cff6007d7e04b55adac"
+}

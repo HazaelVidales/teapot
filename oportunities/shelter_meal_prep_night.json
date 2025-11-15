@@ -1,0 +1,20 @@
+{
+  "title": "Shelter Dinner Prep Assistant",
+  "description": "Assist Hope Harbor Shelter with nightly dinner preparation for residents by chopping produce, assembling salads, portioning hot trays, and tidying the kitchen from 4\u20137pm under the guidance of the kitchen manager.",
+  "skills": [
+    "teamwork",
+    "food service",
+    "packing and sorting"
+  ],
+  "interests": [
+    "soup kitchen service",
+    "homeless outreach",
+    "meal service",
+    "community kitchens",
+    "food bank support"
+  ],
+  "source_file": "shelter_meal_prep_night",
+  "model": "gpt-5.1",
+  "source_excerpt": "Hope Harbor Shelter runs a nightly dinner program for 48 residents and needs prep assistants 4-7pm. Duties include chopping produce, assembling salads, portioning hot trays, and tidying the kitchen afterward.\n\nServeSafe certification is welcome but not required; our kitchen manager provides a safety briefing at the start of each shift. Perfect for people who like fast-paced teamwork with a tangible impact.",
+  "thumbprint": "f1cd1cf4e1dffeb63b262fa720af24dce97423dde845cc0ba898d50fae24136b"
+}

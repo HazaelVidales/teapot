@@ -1,0 +1,21 @@
+{
+  "title": "Lake Union Shoreline Cleanup Volunteer",
+  "description": "Monthly shoreline cleanup at Lake Union involving trash removal along the waterline, trimming invasive blackberry vines, and logging wildlife sightings. Volunteers meet at the Westlake kayak dock, receive gloves, grabbers, and safety instructions, then work in buddy teams for two hours. Some volunteers also help sort debris and enter findings into a citizen science tracker.",
+  "skills": [
+    "environmental cleanup",
+    "data entry",
+    "teamwork",
+    "community engagement"
+  ],
+  "interests": [
+    "environmental conservation",
+    "community cleanups",
+    "community science projects",
+    "citizen data collection",
+    "park stewardship"
+  ],
+  "source_file": "lake_union_cleanup",
+  "model": "gpt-5.1",
+  "source_excerpt": "Friends of Lake Union host a monthly shoreline cleanup to remove trash from the waterline, trim invasive blackberry vines, and log wildlife sightings. Volunteers meet at the Westlake kayak dock, receive gloves, grabbers, and safety instructions, then work in buddy teams for two hours.\n\nGreat for people who like light physical work outdoors and care about urban ecology. Kayak experience helps but is not required; we always need folks to sort debris and enter findings into our citizen science tracker.",
+  "thumbprint": "1bc924fc69fabee75531a2564d031779f37a0db0029e0efb59f7b1ece5fcf277"
+}

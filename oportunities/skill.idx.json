@@ -1,0 +1,362 @@
+{
+  "label": "skills",
+  "generated_at": "2025-11-15T21:30:42.409982+00:00",
+  "total_terms": 35,
+  "index": {
+    "administrative support": [
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "animal care": [
+      {
+        "title": "Playtime Pal Animal Socialization Volunteer",
+        "file": "paws_playtime_pal.json",
+        "source_file": "paws_playtime_pal"
+      }
+    ],
+    "arts and crafts facilitation": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      }
+    ],
+    "bilingual support": [
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "child care": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      }
+    ],
+    "communication": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      },
+      {
+        "title": "Community Van Driver",
+        "file": "community-van-driver.json",
+        "source_file": "community-van-driver"
+      },
+      {
+        "title": "Playtime Pal Animal Socialization Volunteer",
+        "file": "paws_playtime_pal.json",
+        "source_file": "paws_playtime_pal"
+      },
+      {
+        "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+        "file": "girls_stem_lab.json",
+        "source_file": "girls_stem_lab"
+      },
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      },
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      },
+      {
+        "title": "Youth Soccer Referee",
+        "file": "youth_soccer_referee.json",
+        "source_file": "youth_soccer_referee"
+      }
+    ],
+    "community engagement": [
+      {
+        "title": "Lake Union Shoreline Cleanup Volunteer",
+        "file": "lake_union_cleanup.json",
+        "source_file": "lake_union_cleanup"
+      },
+      {
+        "title": "Thursday Evening Donation Garden Work Parties",
+        "file": "valley_garden_collective.json",
+        "source_file": "valley_garden_collective"
+      }
+    ],
+    "crowd coordination": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      }
+    ],
+    "customer service": [
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "data entry": [
+      {
+        "title": "Lake Union Shoreline Cleanup Volunteer",
+        "file": "lake_union_cleanup.json",
+        "source_file": "lake_union_cleanup"
+      }
+    ],
+    "digital literacy coaching": [
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "disaster relief": [
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      }
+    ],
+    "document organization": [
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "driving": [
+      {
+        "title": "Community Van Driver",
+        "file": "community-van-driver.json",
+        "source_file": "community-van-driver"
+      }
+    ],
+    "emergency preparedness": [
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      }
+    ],
+    "environmental cleanup": [
+      {
+        "title": "Lake Union Shoreline Cleanup Volunteer",
+        "file": "lake_union_cleanup.json",
+        "source_file": "lake_union_cleanup"
+      }
+    ],
+    "event support": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      },
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      }
+    ],
+    "food service": [
+      {
+        "title": "Shelter Dinner Prep Assistant",
+        "file": "shelter_meal_prep_night.json",
+        "source_file": "shelter_meal_prep_night"
+      }
+    ],
+    "food sorting": [
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "inventory management": [
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      }
+    ],
+    "listening skills": [
+      {
+        "title": "Playtime Pal Animal Socialization Volunteer",
+        "file": "paws_playtime_pal.json",
+        "source_file": "paws_playtime_pal"
+      },
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "meal distribution": [
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "mentoring": [
+      {
+        "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+        "file": "girls_stem_lab.json",
+        "source_file": "girls_stem_lab"
+      },
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "packing and sorting": [
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      },
+      {
+        "title": "Shelter Dinner Prep Assistant",
+        "file": "shelter_meal_prep_night.json",
+        "source_file": "shelter_meal_prep_night"
+      },
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "pet socialization": [
+      {
+        "title": "Playtime Pal Animal Socialization Volunteer",
+        "file": "paws_playtime_pal.json",
+        "source_file": "paws_playtime_pal"
+      }
+    ],
+    "refereeing": [
+      {
+        "title": "Youth Soccer Referee",
+        "file": "youth_soccer_referee.json",
+        "source_file": "youth_soccer_referee"
+      }
+    ],
+    "registration desk": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      }
+    ],
+    "senior companionship": [
+      {
+        "title": "Community Van Driver",
+        "file": "community-van-driver.json",
+        "source_file": "community-van-driver"
+      }
+    ],
+    "shelter support": [
+      {
+        "title": "Playtime Pal Animal Socialization Volunteer",
+        "file": "paws_playtime_pal.json",
+        "source_file": "paws_playtime_pal"
+      }
+    ],
+    "teaching": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      },
+      {
+        "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+        "file": "girls_stem_lab.json",
+        "source_file": "girls_stem_lab"
+      },
+      {
+        "title": "Senior Tablet Coach",
+        "file": "senior_tablet_coach.json",
+        "source_file": "senior_tablet_coach"
+      }
+    ],
+    "teamwork": [
+      {
+        "title": "Arts in the Park Creative Station Lead",
+        "file": "arts_in_the_park_lead.json",
+        "source_file": "arts_in_the_park_lead"
+      },
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      },
+      {
+        "title": "Lake Union Shoreline Cleanup Volunteer",
+        "file": "lake_union_cleanup.json",
+        "source_file": "lake_union_cleanup"
+      },
+      {
+        "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+        "file": "girls_stem_lab.json",
+        "source_file": "girls_stem_lab"
+      },
+      {
+        "title": "Shelter Dinner Prep Assistant",
+        "file": "shelter_meal_prep_night.json",
+        "source_file": "shelter_meal_prep_night"
+      },
+      {
+        "title": "Thursday Evening Donation Garden Work Parties",
+        "file": "valley_garden_collective.json",
+        "source_file": "valley_garden_collective"
+      },
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      },
+      {
+        "title": "Youth Soccer Referee",
+        "file": "youth_soccer_referee.json",
+        "source_file": "youth_soccer_referee"
+      }
+    ],
+    "transportation assistance": [
+      {
+        "title": "Community Van Driver",
+        "file": "community-van-driver.json",
+        "source_file": "community-van-driver"
+      }
+    ],
+    "volunteer coordination": [
+      {
+        "title": "Weekend Food Bank Volunteer",
+        "file": "food_bank_weekend.json",
+        "source_file": "food_bank_weekend"
+      }
+    ],
+    "warehouse organization": [
+      {
+        "title": "Disaster Preparedness Kit Build Day Volunteer",
+        "file": "disaster_kit_build_day.json",
+        "source_file": "disaster_kit_build_day"
+      }
+    ],
+    "youth sports coaching": [
+      {
+        "title": "Saturday STEM Lab Mentor for 6th-8th Grade Girls",
+        "file": "girls_stem_lab.json",
+        "source_file": "girls_stem_lab"
+      },
+      {
+        "title": "Youth Soccer Referee",
+        "file": "youth_soccer_referee.json",
+        "source_file": "youth_soccer_referee"
+      }
+    ]
+  }
+}

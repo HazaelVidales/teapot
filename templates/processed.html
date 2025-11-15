@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Processed Opportunities</title>
+    <style>
+      :root {
+        --surface: #ffffff;
+        --surface-muted: #f8fafc;
+        --accent: #2563eb;
+        --muted: #475569;
+        --border: rgba(148, 163, 184, 0.35);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        background: radial-gradient(circle at top, #e0f2fe 0%, #f1f5f9 60%, #f8fafc 100%);
+        color: #0f172a;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      header {
+        padding: 2.5rem 1.5rem 1rem;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0.5rem 0 0;
+        font-size: clamp(2rem, 4vw, 2.75rem);
+      }
+
+      header p {
+        margin: 0.25rem 0 1rem;
+        color: var(--muted);
+      }
+
+      nav a {
+        font-weight: 600;
+        margin: 0 0.75rem;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+      }
+
+      .summary-bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+      }
+
+      .summary-card {
+        background: var(--surface);
+        border-radius: 18px;
+        padding: 1rem 1.5rem;
+        border: 1px solid var(--border);
+        min-width: 180px;
+        text-align: center;
+        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .summary-card strong {
+        display: block;
+        font-size: 1.9rem;
+      }
+
+      .errors {
+        background: #fee2e2;
+        border: 1px solid #fecaca;
+        color: #991b1b;
+        border-radius: 14px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border-radius: 22px;
+        padding: 1.5rem;
+        border: 1px solid var(--border);
+        box-shadow: 0 18px 35px rgba(15, 23, 42, 0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+
+      .card h2 {
+        margin: 0;
+        font-size: 1.35rem;
+      }
+
+      .card small {
+        color: var(--muted);
+      }
+
+      .description {
+        font-size: 0.95rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .meta {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 0.5rem;
+      }
+
+      .meta-block {
+        background: var(--surface-muted);
+        border-radius: 12px;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .meta-label {
+        font-weight: 600;
+        display: block;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .chip {
+        background: #e2e8f0;
+        color: #0f172a;
+        border-radius: 999px;
+        padding: 0.2rem 0.65rem;
+        font-size: 0.8rem;
+      }
+
+      .excerpt {
+        background: var(--surface-muted);
+        border-radius: 14px;
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+        border: 1px dashed rgba(148, 163, 184, 0.5);
+      }
+
+      .empty {
+        text-align: center;
+        padding: 3rem 1rem;
+        background: var(--surface);
+        border-radius: 22px;
+        border: 1px dashed var(--border);
+        color: var(--muted);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/ui">← Back to finder</a>
+        <a href="/add-opportunity">Add new opportunity</a>
+        <a href="/processed-opportunities">Refresh</a>
+      </nav>
+      <h1>Processed Opportunities</h1>
+      <p>These listings were generated from the files in <code>oportunities/</code>. Updates appear automatically when you re-run the processor.</p>
+    </header>
+
+    <div class="page">
+      {% if errors %}
+        <div class="errors">
+          <strong>Issues detected:</strong>
+          <ul>
+            {%- for err in errors %}
+            <li>{{ err }}</li>
+            {%- endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <div class="summary-bar">
+        <div class="summary-card">
+          <strong>{{ opportunities|length }}</strong>
+          Opportunities
+        </div>
+        {% if opportunities %}
+          <div class="summary-card">
+            <strong>{{ opportunities[0].updated_display }}</strong>
+            Latest update
+          </div>
+        {% endif %}
+      </div>
+
+      {% if not opportunities %}
+        <div class="empty">No processed opportunities were found. Run <code>python3 process_oportunities.py</code> to generate data from <code>oportunities_raw/</code>.</div>
+      {% else %}
+        <div class="grid">
+          {% for opp in opportunities %}
+            <article class="card">
+              <div>
+                <h2>{{ opp.title }}</h2>
+                <small>Updated {{ opp.updated_display }}, source file <code>{{ opp.source_file }}</code></small>
+              </div>
+
+              <div class="description">{{ opp.description }}</div>
+
+              <div class="meta">
+                {% if opp.model %}
+                  <div class="meta-block">
+                    <span class="meta-label">Model</span>
+                    {{ opp.model }}
+                  </div>
+                {% endif %}
+                {% if opp.thumbprint %}
+                  <div class="meta-block">
+                    <span class="meta-label">Thumbprint</span>
+                    <code>{{ opp.thumbprint[:12] }}…</code>
+                  </div>
+                {% endif %}
+                <div class="meta-block">
+                  <span class="meta-label">JSON file</span>
+                  {{ opp.file_name }}
+                </div>
+              </div>
+
+              {% if opp.skills %}
+                <div>
+                  <strong>Skills:</strong>
+                  <div class="chips">
+                    {% for skill in opp.skills %}
+                      <span class="chip">{{ skill }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if opp.interests %}
+                <div>
+                  <strong>Interests:</strong>
+                  <div class="chips">
+                    {% for interest in opp.interests %}
+                      <span class="chip">{{ interest }}</span>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+
+              {% if opp.source_excerpt %}
+                <div class="excerpt">
+                  {{ opp.source_excerpt }}
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
