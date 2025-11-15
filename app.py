@@ -9,7 +9,7 @@ from pathlib import Path
 from flask import Flask, request, jsonify, render_template
 
 from process_oportunities import process_opportunity_files
-from volunteer_graph import build_volunteer_graph
+from find_opportunity_graph import build_volunteer_graph
 
 app = Flask(__name__)
 
@@ -18,6 +18,7 @@ volunteer_app = build_volunteer_graph()
 BASE_DIR = Path(__file__).resolve().parent
 RAW_DIR = BASE_DIR / "oportunities_raw"
 DATA_DIR = BASE_DIR / "oportunities"
+INDEX_DIR = BASE_DIR / "index"
 SKILLS_PATH = BASE_DIR / "skills.json"
 INTEREST_PATH = BASE_DIR / "interest.json"
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.1")
@@ -33,8 +34,6 @@ def load_processed_opportunities():
         return opportunities, errors
 
     for path in sorted(DATA_DIR.glob("*.json")):
-        if path.name.endswith(".idx.json"):
-            continue
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
@@ -52,6 +51,99 @@ def load_processed_opportunities():
 
     opportunities.sort(key=lambda item: item.get("_sort_key", 0), reverse=True)
     return opportunities, errors
+
+
+def load_json_list(path: Path) -> list[str]:
+    if not path.exists():
+        return []
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return []
+    return [str(item).strip() for item in data if str(item).strip()]
+
+
+def load_index(path: Path) -> dict[str, list[dict[str, str]]]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+    index = payload.get("index")
+    return index if isinstance(index, dict) else {}
+
+
+def extract_intent(query: str, skills: list[str], interests: list[str]) -> dict[str, list[str]]:
+    lowered = query.lower()
+
+    def match_terms(terms: list[str]) -> list[str]:
+        matches: list[str] = []
+        for term in terms:
+            token = term.strip()
+            if not token:
+                continue
+            if token.lower() in lowered and token not in matches:
+                matches.append(token)
+        return matches
+
+    return {
+        "skills": match_terms(skills),
+        "interests": match_terms(interests),
+    }
+
+
+def consolidate_matches(intent: dict[str, list[str]], limit: int = 10) -> dict:
+    skill_index = load_index(INDEX_DIR / "skill.idx.json")
+    interest_index = load_index(INDEX_DIR / "interest.idx.json")
+    combined: dict[str, dict] = {}
+
+    def register(entry: dict[str, str], term: str, category: str, weight: float) -> None:
+        file_name = entry.get("file")
+        if not file_name:
+            return
+        match = combined.setdefault(file_name, {
+            "title": entry.get("title", file_name),
+            "file": file_name,
+            "source_file": entry.get("source_file", file_name),
+            "score": 0.0,
+            "skills": [],
+            "interests": [],
+        })
+        match[category].append(term)
+        match["score"] += weight
+
+    for skill in intent.get("skills", []):
+        for entry in skill_index.get(skill, []):
+            register(entry, skill, "skills", 2.0)
+
+    for interest in intent.get("interests", []):
+        for entry in interest_index.get(interest, []):
+            register(entry, interest, "interests", 1.5)
+
+    results = []
+    for file_name, info in combined.items():
+        data = {}
+        try:
+            data = json.loads((DATA_DIR / file_name).read_text(encoding="utf-8"))
+        except Exception:
+            data = {}
+        results.append({
+            **info,
+            "details": {
+                "description": data.get("description"),
+                "skills": data.get("skills", []),
+                "interests": data.get("interests", []),
+                "model": data.get("model"),
+                "source_excerpt": data.get("source_excerpt"),
+            },
+        })
+
+    ordered = sorted(results, key=lambda item: (-item["score"], item["title"].lower()))
+    return {
+        "items": ordered[: max(limit, 1)],
+        "available": len(ordered),
+    }
 
 
 def slugify_filename(value: str) -> str:
@@ -117,34 +209,14 @@ def volunteer():
 
 @app.route("/", methods=["GET"])
 def root():
-    return jsonify({
-        "status": "ok",
-        "message": "Volunteer graph API",
-        "ui": "/ui",
-        "processed": "/processed-opportunities",
-        "add_raw": "/add-opportunity",
-    })
-
-
-@app.route("/ui", methods=["GET", "POST"])
-def ui():
-    if request.method == "GET":
-        return render_template("ui.html", query="", summary=None, error=None)
-
-    # POST: read form field
-    query = request.form.get("query", "").strip()
-
-    if not query:
-        return render_template("ui.html", query="", summary=None, error="A query is required.")
-
-    state_in = {"query": query}
-
-    try:
-        result = volunteer_app.invoke(state_in)
-        summary = result.get("summary")
-        return render_template("ui.html", query=query, summary=summary, error=None)
-    except Exception as exc:
-        return render_template("ui.html", query=query, summary=None, error=f"Error: {exc}")
+    links = [
+        {"path": "/find-opportunity", "label": "Find Opportunities", "description": "Run the LangGraph workflow via the interactive form."},
+        {"path": "/processed-opportunities", "label": "Processed Dataset", "description": "Browse all processed opportunities with metadata."},
+        {"path": "/add-opportunity", "label": "Add Opportunity", "description": "Paste a new description and rerun the processor."},
+        {"path": "/find-opportunity", "label": "Intent Match API", "description": "POST endpoint that matches text queries to the indexed dataset."},
+        {"path": "/volunteer", "label": "LangGraph API", "description": "POST endpoint that runs the GPT-5.1 summarization flow."},
+    ]
+    return render_template("hub.html", links=links)
 
 
 @app.route("/add-opportunity", methods=["GET", "POST"])
@@ -198,6 +270,54 @@ def processed_opportunities():
         opportunities=opportunities,
         errors=errors,
     )
+
+
+@app.route("/find-opportunity", methods=["GET", "POST"])
+def find_opportunity():
+    if request.method == "GET":
+        return render_template("find-opportunity.html", query="", summary=None, error=None)
+
+    if request.is_json or (request.mimetype and "json" in request.mimetype):
+        data = request.get_json(force=True, silent=True) or {}
+        query = str(data.get("query", "")).strip()
+        try:
+            limit = int(data.get("limit", 8))
+        except (TypeError, ValueError):
+            limit = 8
+        limit = max(1, min(limit, 25))
+
+        if not query:
+            return jsonify({"error": "'query' is required"}), 400
+
+        skills = load_json_list(SKILLS_PATH)
+        interests = load_json_list(INTEREST_PATH)
+        intent = extract_intent(query, skills, interests)
+        match_data = consolidate_matches(intent, limit=limit)
+
+        return jsonify({
+            "query": query,
+            "intent": intent,
+            "matches": match_data["items"],
+            "stats": {
+                "requested_limit": limit,
+                "available_matches": match_data["available"],
+                "skill_terms": len(intent.get("skills", [])),
+                "interest_terms": len(intent.get("interests", [])),
+            },
+        })
+
+    query = request.form.get("query", "").strip()
+    if not query:
+        return render_template("find-opportunity.html", query="", summary=None, error="A query is required.")
+
+    state_in = {"query": query}
+
+    try:
+        result = volunteer_app.invoke(state_in)
+        summary = result.get("summary")
+        return render_template("find-opportunity.html", query=query, summary=summary, error=None)
+    except Exception as exc:
+        return render_template("find-opportunity.html", query=query, summary=None, error=f"Error: {exc}")
 
 
 if __name__ == "__main__":

@@ -14,6 +14,7 @@ from langchain_openai import ChatOpenAI
 
 
 BASE_DIR = Path(__file__).resolve().parent
+INDEX_DIR = BASE_DIR / "index"
 
 
 class OpportunityState(TypedDict, total=False):
@@ -285,8 +286,9 @@ def process_opportunity_files(
 
 	skill_index, interest_index = build_indexes_from_outputs(output_dir)
 	generated_at = datetime.now(timezone.utc).isoformat()
-	write_index_file(output_dir / "skill.idx.json", "skills", skill_index, generated_at)
-	write_index_file(output_dir / "interest.idx.json", "interests", interest_index, generated_at)
+	INDEX_DIR.mkdir(parents=True, exist_ok=True)
+	write_index_file(INDEX_DIR / "skill.idx.json", "skills", skill_index, generated_at)
+	write_index_file(INDEX_DIR / "interest.idx.json", "interests", interest_index, generated_at)
 
 
 def parse_args() -> argparse.Namespace:

@@ -18,7 +18,7 @@ The app builds a volunteer "graph" using `langgraph` and `langgraph-openai`, the
 
 ## Features
 
-- Web UI at `/ui` for entering location and interests
+- Web UI at `/find-opportunity` for entering location and interests
 - JSON API at `/volunteer` for programmatic access
 - LangGraph-powered workflow for composing the volunteer search and summarization steps
 - Uses `requests` and `beautifulsoup4` to fetch and scrape opportunity data
@@ -72,7 +72,7 @@ Run the development server:
 python app.py
 ```
 
-The UI will be available at `http://localhost:5001/ui` and the JSON API at `http://localhost:5001/volunteer`.
+The UI will be available at `http://localhost:5001/find-opportunity` and the JSON API at `http://localhost:5001/volunteer`.
 
 ## Usage
 
@@ -80,7 +80,7 @@ The UI will be available at `http://localhost:5001/ui` and the JSON API at `http
 
 Once `app.py` is running, you can either:
 
-- Open the browser UI at `http://localhost:5001/ui` and submit the form with a location and comma-separated interests, or
+- Open the browser UI at `http://localhost:5001/find-opportunity` and submit the form with a location and comma-separated interests, or
 - Call the JSON API directly:
 
 ```bash
@@ -125,12 +125,12 @@ Environment variables:
 
 - `OPENAI_API_KEY` (required): API key used by `langgraph-openai`.
 
-Other configuration, such as which sources to scrape, lives inside the LangGraph builder in `volunteer_graph.py`.
+Other configuration, such as which sources to scrape, lives inside the LangGraph builder in `find_opportunity_graph.py`.
 
 ## Development
 
-- `app.py` contains the Flask application (`/volunteer` and `/ui`).
-- `volunteer_graph.py` defines `build_volunteer_graph()`, which constructs the LangGraph app.
+- `app.py` contains the Flask application (`/volunteer` and `/find-opportunity`).
+- `find_opportunity_graph.py` defines `build_volunteer_graph()`, which constructs the LangGraph app.
 - `test.py` contains basic tests / experiments around the graph or API.
 
 To run the dev server:
@@ -139,4 +139,4 @@ To run the dev server:
 python app.py
 ```
 
-Then open `http://localhost:5001/ui` in your browser, or use the `curl` example in the Usage section.
+Then open `http://localhost:5001/find-opportunity` in your browser, or use the `curl` example in the Usage section.
