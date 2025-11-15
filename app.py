@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent
 RAW_DIR = BASE_DIR / "oportunities_raw"
 DATA_DIR = BASE_DIR / "oportunities"
 INDEX_DIR = BASE_DIR / "index"
-SKILLS_PATH = BASE_DIR / "skills.json"
+SKILLS_PATH = BASE_DIR / "skill.json"
 INTEREST_PATH = BASE_DIR / "interest.json"
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.1")
 

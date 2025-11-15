@@ -308,7 +308,7 @@ def parse_args() -> argparse.Namespace:
 	parser.add_argument(
 		"--skills",
 		type=Path,
-		default=BASE_DIR / "skills.json",
+		default=BASE_DIR / "skill.json",
 		help="Path to skills JSON list.",
 	)
 	parser.add_argument(
