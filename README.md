@@ -18,10 +18,12 @@ The app builds a volunteer "graph" using `langgraph` and `langgraph-openai`, the
 
 ## Features
 
-- Web UI at `/find-opportunity` for entering location and interests
-- JSON API at `/volunteer` for programmatic access
-- LangGraph-powered workflow for composing the volunteer search and summarization steps
-- Uses `requests` and `beautifulsoup4` to fetch and scrape opportunity data
+- Landing hub at `/` with quick links to every workflow surface
+- Unified `/find-opportunity` route (HTML + JSON) that runs the LangGraph finder
+- Processed dataset viewer at `/processed-opportunities` plus a writer UI at `/add-opportunity`
+- Automated processing script (`process_oportunities.py`) that turns `oportunities_raw/*.txt` into structured JSON under `oportunities/`
+- Skill and interest indexes in `index/skill.idx.json` and `index/interest.idx.json` for fast intent matching
+- `/volunteer` LangGraph API for long-form GPT-5.1 summaries of the requested opportunities
 
 ## Installation
 
@@ -78,46 +80,104 @@ The UI will be available at `http://localhost:5001/find-opportunity` and the JSO
 
 ### Basic Usage
 
-Once `app.py` is running, you can either:
+1. **Generate (or refresh) the dataset.** Populate `oportunities_raw/*.txt` and run:
 
-- Open the browser UI at `http://localhost:5001/find-opportunity` and submit the form with a location and comma-separated interests, or
-- Call the JSON API directly:
+   ```bash
+   python process_oportunities.py
+   ```
 
-```bash
-curl -X POST http://localhost:5001/volunteer \
-  -H "Content-Type: application/json" \
-  -d '{"location": "Seattle, WA", "interests": ["animals", "education"]}'
-```
+   This produces structured JSON under `oportunities/` and the aggregated indexes in `index/`.
+
+2. **Explore via the finder UI.** Open `http://localhost:5001/find-opportunity` to describe what you need (location, skills, interests, timing). Use `/add-opportunity` to paste new descriptions and rerun the processor without leaving the browser.
+
+3. **Call the JSON APIs.**
+
+   - Intent matching with the index-backed endpoint:
+
+     ```bash
+     curl -X POST http://localhost:5001/find-opportunity \
+       -H "Content-Type: application/json" \
+       -d '{"query": "Weekend gardening mentor", "limit": 5}'
+     ```
+
+   - Full LangGraph summary via GPT-5.1:
+
+     ```bash
+     curl -X POST http://localhost:5001/volunteer \
+       -H "Content-Type: application/json" \
+       -d '{"query": "I live in Seattle and love animal rescues"}'
+     ```
 
 ## API
 
+### `GET | POST /find-opportunity`
+
+- `GET` renders the interactive finder UI.
+- `POST` with JSON returns index-backed matches:
+
+  ```json
+  {
+    "query": "weekend animal rescue volunteer",
+    "limit": 5
+  }
+  ```
+
+  - `query` (string, required): Natural-language description of what you want.
+  - `limit` (int, optional, default `8`, max `25`): Number of matches to return.
+
+  Response payload:
+
+  ```json
+  {
+    "query": "weekend animal rescue volunteer",
+    "intent": {"skills": ["animal care"], "interests": ["shelter support"]},
+    "matches": [
+      {
+        "title": "PAWS Playtime Pal",
+        "file": "paws_playtime_pal.json",
+        "skills": ["animal care"],
+        "interests": ["shelter support"],
+        "score": 5.0,
+        "details": {"description": "...", "skills": [...], "interests": [...], "model": "gpt-5.1"}
+      }
+    ],
+    "stats": {"requested_limit": 5, "available_matches": 3, "skill_terms": 1, "interest_terms": 1}
+  }
+  ```
+
 ### `POST /volunteer`
 
-JSON endpoint that runs the volunteer LangGraph.
-
-**Request body:**
+Runs the GPT-5.1 LangGraph summarizer for a single `query` string.
 
 ```json
 {
-  "location": "Seattle, WA",
-  "interests": ["animals", "education"]
+  "query": "I live in Seattle, love education nonprofits, and need Saturday shifts"
 }
 ```
 
-- `location` (string, required): City / area to search in.
-- `interests` (array of strings, optional): Topics you care about (e.g. `"food"`, `"education"`).
-
-**Response (example):**
+Response:
 
 ```json
 {
-  "summary": "...human-friendly summary of relevant volunteer opportunities...",
-  "location": "Seattle, WA",
-  "interests": ["animals", "education"]
+  "summary": {
+    "overview": "...",
+    "items": [{
+      "title": "Girls STEM Lab",
+      "org": "Northside Community Center",
+      "why_fit": "...",
+      "time": "Saturdays 10am-1pm",
+      "location": "Seattle, WA",
+      "tags": ["education", "mentoring"],
+      "url": "https://example.org/stem",
+      "phone": null,
+      "contact_email": null,
+      "suggested_introduction": "..."
+    }]
+  }
 }
 ```
 
-On error, the API returns a JSON object with an `error` field and an appropriate HTTP status code.
+Errors return an `error` field with an appropriate HTTP status.
 
 ## Configuration
 
@@ -129,8 +189,10 @@ Other configuration, such as which sources to scrape, lives inside the LangGraph
 
 ## Development
 
-- `app.py` contains the Flask application (`/volunteer` and `/find-opportunity`).
+- `app.py` contains the Flask application (`/volunteer`, `/find-opportunity`, `/processed-opportunities`, etc.).
 - `find_opportunity_graph.py` defines `build_volunteer_graph()`, which constructs the LangGraph app.
+- `process_oportunities.py` converts `oportunities_raw/*.txt` into structured JSON under `oportunities/` and creates the skill/interest index files under `index/`.
+- `templates/find-opportunity.html`, `templates/processed.html`, and `templates/add_opportunity.html` power the browser experiences.
 - `test.py` contains basic tests / experiments around the graph or API.
 
 To run the dev server:
@@ -139,4 +201,4 @@ To run the dev server:
 python app.py
 ```
 
-Then open `http://localhost:5001/find-opportunity` in your browser, or use the `curl` example in the Usage section.
+Then open `http://localhost:5001/find-opportunity` in your browser, or use the `curl` examples in the Usage section.
